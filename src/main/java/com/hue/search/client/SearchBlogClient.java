@@ -1,6 +1,5 @@
 package com.hue.search.client;
 
-import com.hue.search.dto.Sort;
 import com.hue.search.model.Page;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
