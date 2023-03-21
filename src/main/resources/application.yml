@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: search
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: BASIC
+        default-request-headers:
+          Authorization:
+            - KakaoAK ${REST_API_KEY}
+
+logging:
+  file.path: /tmp
+  level:
+    com.hue.search: debug
