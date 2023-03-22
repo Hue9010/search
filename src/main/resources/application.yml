@@ -25,14 +25,13 @@ feign:
       kakao:
         default-request-headers:
           Authorization:
-            - KakaoAK ${REST_API_KEY}
+            - KakaoAK e6f8e294bdf1e464848f4ab2f01ebcae
       naver:
         default-request-headers:
           X-Naver-Client-Id:
             - U2pIrryJ2iVXoFLfNreY
-            - ${NAVER_CLIENT_ID}
           X-Naver-Client-Secret:
-            - ${NAVER_CLIENT_SECRET}
+            - PqYR5xnHaW
 
 logging:
   file.path: /tmp

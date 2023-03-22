@@ -1,3 +1,7 @@
+## 다운로드 및 실행
+> 다운로드: https://github.com/Hue9010/search/raw/main/download/search-0.0.1-SNAPSHOT.jar
+> 
+> 실행: java -jar search-0.0.1-SNAPSHOT.jar
 
 ## API
 
@@ -110,13 +114,6 @@ empty List (검색된 키워드가 하나도 없을때)
   
 ]
 ```
-
-
-### 프로젝트 설명
-
-- 
-- 카카오 API 장애시 네이버 API 사용
-  - PathVariable도 존재하지 않기 때문에 404도 일시적인 도메인 문제로 판단되어 5xx와 같이 네이버 검색을 이용합니다. 
 
 ## 외부 라이브러리 및 오픈소스
 
