@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +45,9 @@ public class KakaoPage implements PageInterface {
                                         .url(document.getUrl())
                                         .blogName(document.getBlogName())
                                         .thumbnail(document.getThumbnail())
-                                        .createdAt(document.getDatetime())
+                                        .createdAt(
+                                                LocalDateTime.parse(document.getDatetime(), DateTimeFormatter.ISO_DATE_TIME)
+                                        )
                                         .build()
                                 )
                                 .collect(Collectors.toList()))

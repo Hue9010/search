@@ -7,13 +7,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class NaverPage implements PageInterface {
     private Integer total;
     private Integer start;
@@ -45,7 +46,10 @@ public class NaverPage implements PageInterface {
                                 .contents(i.getDescription())
                                 .url(i.link)
                                 .blogName(i.bloggerName)
-                                .createdAt(i.postdate)
+                                .createdAt(
+                                        LocalDate.parse(i.getPostdate(), DateTimeFormatter.ofPattern("yyyyMMdd"))
+                                                .atStartOfDay()
+                                )
                                 .build()
                         ).collect(Collectors.toList()))
                 .build();
