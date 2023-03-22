@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hue.search.dto.SearchResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -52,7 +51,7 @@ public class NaverPage implements PageInterface {
                 .build();
     }
 
-    @Data
+    @Getter
     @NoArgsConstructor
     public static class Item {
         private String title;

@@ -2,7 +2,10 @@ package com.hue.search.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hue.search.dto.SearchResponse;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +50,7 @@ public class KakaoPage implements PageInterface {
                 .build();
     }
 
-    @Data
+    @Getter
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
