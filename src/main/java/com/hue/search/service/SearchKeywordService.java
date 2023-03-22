@@ -5,6 +5,7 @@ import com.hue.search.repository.SearchKeywordRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class SearchKeywordService {
         return searchKeywordRepository.findTop10ByOrderByCountDescUpdatedAtDesc();
     }
 
-    @Transactional
     @CacheEvict(cacheNames = "keywords", key = "'top_10'")
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void hitKeyword(String searchKeyword) {
         searchKeywordRepository.findByKeyword(searchKeyword)
                 .ifPresentOrElse(
