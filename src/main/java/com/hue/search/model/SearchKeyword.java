@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class SearchKeyword {
     public final static int INIT_COUNT = 1;
+    public static int POPULAR_KEYWORD_MAX_COUNT = 10;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

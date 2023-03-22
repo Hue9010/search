@@ -25,13 +25,23 @@ public class SearchKeywordService {
         return searchKeywordRepository.findTop10ByOrderByCountDescUpdatedAtDesc();
     }
 
-    @CacheEvict(cacheNames = "keywords", key = "'top_10'")
+    @Transactional(readOnly = true)
+    public SearchKeyword findSearchKeywordById(String keyword) {
+        return searchKeywordRepository.findByKeyword(keyword)
+                .orElseGet(() -> new SearchKeyword(keyword));
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void hitKeyword(String searchKeyword) {
-        searchKeywordRepository.findByKeyword(searchKeyword)
+        searchKeywordRepository.findForUpdateByKeyword(searchKeyword)
                 .ifPresentOrElse(
                         k -> k.hit(),
                         () -> searchKeywordRepository.save(new SearchKeyword(searchKeyword))
                 );
+    }
+
+    @CacheEvict(cacheNames = "keywords", key = "'top_10'")
+    public void cacheEvictHelper(){
+
     }
 }

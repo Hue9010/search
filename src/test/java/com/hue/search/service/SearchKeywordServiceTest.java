@@ -28,7 +28,7 @@ class SearchKeywordServiceTest {
     void hit_new_keyword() {
         // given
         SearchKeyword newKeyword = new SearchKeyword(TEST_KEYWORD);
-        when(searchKeywordRepository.findByKeyword(TEST_KEYWORD)).thenReturn(Optional.empty());
+        when(searchKeywordRepository.findForUpdateByKeyword(TEST_KEYWORD)).thenReturn(Optional.empty());
         when(searchKeywordRepository.save(any(SearchKeyword.class))).thenReturn(newKeyword);
 
         // when
@@ -45,7 +45,7 @@ class SearchKeywordServiceTest {
         // given
         SearchKeyword existKeyword = new SearchKeyword(TEST_KEYWORD);
         int originCount = existKeyword.getCount();
-        when(searchKeywordRepository.findByKeyword(TEST_KEYWORD)).thenReturn(Optional.of(existKeyword));
+        when(searchKeywordRepository.findForUpdateByKeyword(TEST_KEYWORD)).thenReturn(Optional.of(existKeyword));
 
         // when
         searchKeywordService.hitKeyword(TEST_KEYWORD);

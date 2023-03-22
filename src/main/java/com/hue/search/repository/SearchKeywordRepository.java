@@ -12,5 +12,7 @@ public interface SearchKeywordRepository extends JpaRepository<SearchKeyword, Lo
     List<SearchKeyword> findTop10ByOrderByCountDescUpdatedAtDesc();
 
     @Lock(value = LockModeType.PESSIMISTIC_WRITE)
+    Optional<SearchKeyword> findForUpdateByKeyword(String keyword);
+
     Optional<SearchKeyword> findByKeyword(String keyword);
 }
