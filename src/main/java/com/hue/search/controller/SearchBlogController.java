@@ -1,7 +1,7 @@
 package com.hue.search.controller;
 
 import com.hue.search.dto.SearchResponse;
-import com.hue.search.dto.Sort;
+import com.hue.search.model.Sort;
 import com.hue.search.service.SearchBlogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +29,7 @@ public class SearchBlogController {
             @RequestParam(required = false, defaultValue = "1") @Min(1) @Max(50) Integer page,
             @RequestParam(required = false, defaultValue = "10") @Min(1) @Max(50) Integer size) {
         return ResponseEntity.ok(
-                SearchResponse.fromPage(searchBlogService.searchBlog(query, sort, page, size))
+                searchBlogService.searchBlog(query, sort, page, size).toSearchResponse()
         );
     }
 }

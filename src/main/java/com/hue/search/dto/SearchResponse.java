@@ -1,6 +1,6 @@
 package com.hue.search.dto;
 
-import com.hue.search.model.Page;
+import com.hue.search.model.KakaoPage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +18,10 @@ public class SearchResponse {
 
     private List<DocumentResponse> documents;
 
-    public static SearchResponse fromPage(Page page) {
+    public static SearchResponse fromPage(KakaoPage kakaoPage) {
         return SearchResponse.builder()
-                .meta(MetaResponse.fromMeta(page.getMeta()))
-                .documents(page.getDocuments().stream()
+                .meta(MetaResponse.fromMeta(kakaoPage.getMeta()))
+                .documents(kakaoPage.getDocuments().stream()
                         .map(DocumentResponse::fromDocument)
                         .collect(Collectors.toList()))
                 .build();
@@ -35,7 +35,7 @@ public class SearchResponse {
         private Integer pageableCount;
         private Boolean isEnd;
 
-        public static MetaResponse fromMeta(Page.Meta meta) {
+        public static MetaResponse fromMeta(KakaoPage.Meta meta) {
             return MetaResponse.builder()
                     .totalCount(meta.getTotalCount())
                     .pageableCount(meta.getPageableCount())
@@ -55,7 +55,7 @@ public class SearchResponse {
         private String thumbnail;
         private String createdAt;
 
-        public static DocumentResponse fromDocument(Page.Document document) {
+        public static DocumentResponse fromDocument(KakaoPage.Document document) {
             return DocumentResponse.builder()
                     .title(document.getTitle())
                     .contents(document.getContents())

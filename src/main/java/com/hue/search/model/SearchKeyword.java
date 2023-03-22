@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,8 +23,11 @@ public class SearchKeyword {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(columnDefinition = "VARCHAR(255)")
     private String keyword;
 
+    @NotNull
     private Integer count;
 
     @CreationTimestamp

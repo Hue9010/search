@@ -27,4 +27,21 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, errors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
+    @ExceptionHandler({ClientNotFoundException.class})
+    public final ResponseEntity<Object> handleClientNotFoundException(ClientNotFoundException ex, WebRequest request) {
+        var ApiError = new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());
+        return handleExceptionInternal(ex, ApiError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler({ClientErrorException.class})
+    public final ResponseEntity<Object> handleClientErrorException(ClientErrorException ex, WebRequest request) {
+        var ApiError = new ApiError(ex.getStatus(), ex.getMessage());
+        return handleExceptionInternal(ex, ApiError, new HttpHeaders(), ex.getStatus(), request);
+    }
+
+    @ExceptionHandler({ClientServerException.class})
+    public final ResponseEntity<Object> handleClientServerException(ClientServerException ex, WebRequest request) {
+        var ApiError = new ApiError(ex.getStatus(), ex.getMessage());
+        return handleExceptionInternal(ex, ApiError, new HttpHeaders(), ex.getStatus(), request);
+    }
 }

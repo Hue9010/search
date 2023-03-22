@@ -21,9 +21,18 @@ feign:
     config:
       default:
         loggerLevel: BASIC
+        errorDecoder: com.hue.search.client.configuration.ClientErrorDecoder
+      kakao:
         default-request-headers:
           Authorization:
             - KakaoAK ${REST_API_KEY}
+      naver:
+        default-request-headers:
+          X-Naver-Client-Id:
+            - U2pIrryJ2iVXoFLfNreY
+            - ${NAVER_CLIENT_ID}
+          X-Naver-Client-Secret:
+            - ${NAVER_CLIENT_SECRET}
 
 logging:
   file.path: /tmp
